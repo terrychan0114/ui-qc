@@ -1,0 +1,68 @@
+<p >QC Inspection Rack</p>
+
+<div class="btn-group" role="group" aria-label="Sorting">
+    <h4>
+        <!-- <button mdbBtn type="button" color="primary" outline="true" class="waves-light" mdbWavesEffect (click)="sort_by_ticket_num()">Sort by Ticket number</button>
+        <button mdbBtn type="button" color="primary" outline="true" class="waves-light" mdbWavesEffect (click)="sort_by_urgency()">Sort by Urgency</button>
+        <button mdbBtn type="button" color="primary" outline="true" class="waves-light" mdbWavesEffect (click)="sort_by_status()">Sort by Status</button> -->
+        <button mat-button [matMenuTriggerFor]="sort_menu">Sort</button>
+        <!-- #enddocregion mat-menu-trigger-for -->
+        <mat-menu #sort_menu="matMenu">
+            <button mat-menu-item (click)="sort_by_seq_num()">Sort by Sequence number</button>
+            <button mat-menu-item (click)="sort_by_priority()">Sort by Priority</button>
+            <button mat-menu-item (click)="sort_by_status()">Sort by Final Status</button>
+        </mat-menu>
+
+        <!-- #docregion mat-menu-trigger-for -->
+        <button mat-button [matMenuTriggerFor]="group_menu">Groups</button>
+        <!-- #enddocregion mat-menu-trigger-for -->
+        <mat-menu #group_menu="matMenu">
+            <button mat-menu-item (click)="grouping('all')">All</button>
+            <!-- <button mat-menu-item (click)="grouping('requested')">Requested</button> -->
+            <button mat-menu-item (click)="grouping('ongoing')">Ongoing</button>
+            <button mat-menu-item (click)="grouping('pending')">Pending</button>
+            <button mat-menu-item (click)="grouping('complete')">Completed</button>
+        </mat-menu>
+    </h4>
+</div>
+<font size="5" face="calibri">
+    <table border *ngIf="status_list" style="width: 100%;">
+        <tr>
+            <th>Seq #</th>
+            <th>Part #</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Work Order</th>
+            <th>Process step</th>
+            <th>Entry date</th>
+            <th>Priority</th>
+            <th>Inspector</th>
+            <th>Time spent</th>
+            <th>Completion date</th>
+            <th>Comment</th>
+            <th>Quantity accepted or refused</th>
+            <th>Current status</th>
+            <th>Final status</th>
+
+        </tr>
+        <tr *ngFor="let items of status_list" >
+            <td style="text-align: center;">{{ items.sequence }}</td>
+            <td style="text-align: center;">{{ items.part_num }}</td>
+            <td style="text-align: center;">{{ items.description }}</td>
+            <td style="text-align: center;">{{ items.quantity }}</td>
+            <td style="text-align: center;">{{ items.wo_number }}</td>
+            <td style="text-align: center;">{{ items.process_step }}</td>
+            <td style="text-align: center;">{{ items.entry_date }}</td>
+            <td style="text-align: center;">{{ items.priority }}</td>
+            <td style="text-align: center;">{{ items.inspector }}</td>
+            <td style="text-align: center;">{{ items.time_spent }}</td>
+            <td style="text-align: center;">{{ items.ts_completion }}</td>
+            <td style="text-align: center;">{{ items.comment }}</td>
+            <td style="text-align: center;">{{ items.quantity_acc_rej }}</td>
+            <td style="text-align: center;">{{ items.current_stat }}</td>
+            <td style="text-align: center;">{{ items.final_stat }}</td>
+        </tr>
+    
+    </table>
+</font>
+
